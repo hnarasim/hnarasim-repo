@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Search Page</title>
+</head>
+
+<!-- Initialize a new AngularJS app and associate it with a module named "instantSearch"-->
+<body ng-app="instantSearch" ng-controller="SearchCtrl">
+    <form novalidate name="myForm">
+    <br>
+    <h3> Tennis Racquets Search </h3>
+    <b>
+        <p>StatusCode: {{statusval}}</p>
+        <p>Status: {{statustext}}</p>
+    </b>
+    <div class="bar">
+        <!-- Create a binding between the searchString model and the text field -->
+        <input type="text" name="searchString" ng-model="searchString" id="searchString" 
+            ng-pattern="/^[a-zA-Z0-9]+$/" placeholder="Search for Racquets"
+        class="form-control" />
+    </div>
+    <div class="custom-error"  ng-show="myForm.searchString.$error.pattern">
+                   <b> Not a valid Search String. Use only letters or Numbers </b>  </div>
+        <br>
+    
+        <button class="btn btn-default btn-sm" ng-click="searchRackets(searchString)" ng-disabled="myForm.$invalid">Search</button>
+
+    <ul>
+        <li ng-repeat="i in items ">
+            <p>{{i.name}}</p>
+        </li>
+    </ul>
+    </form>
+
+    <script src="js/lib/angular.js"></script>
+    <script src="js/lib/ui-bootstrap-tpls-2.5.0.min.js"></script>
+    <script src="js/app/SearchController.js"></script>
+    
+    <link rel="stylesheet" href="css/lib/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/app/app.css" />
+
+</body>
+
+</html>
